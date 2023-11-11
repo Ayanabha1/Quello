@@ -4,17 +4,17 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
-const config = new Configuration({
-  apiKey: process.env.OPEN_AI_SECRET_KEY,
-});
-
-const openai = new OpenAIApi(config);
-
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt, amount = 1, resolution = "256x256" } = body;
+    const { prompt, amount = 1, resolution = "256x256", clientApiKey } = body;
+
+    const config = new Configuration({
+      apiKey: clientApiKey,
+    });
+    const openai = new OpenAIApi(config);
+
     if (!userId) {
       return new NextResponse("Unauthorized access", { status: 401 });
     }
@@ -48,6 +48,8 @@ export async function POST(req: Request) {
     return NextResponse.json(response.data.data);
   } catch (error) {
     console.log("[IMAGE ERROR]", error);
-    return new NextResponse("Internal error", { status: 500 });
+    return new NextResponse("[OPENAI ERROR] please check your OPENAI Api Key", {
+      status: 500,
+    });
   }
 }

@@ -12,6 +12,8 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
+    console.log("Payment completed");
+
     event = stripe.webhooks.constructEvent(
       body,
       signature,

@@ -3,6 +3,7 @@ import SubscriptionButton from "@/components/SubscriptionButton";
 import { checkSubscription } from "@/lib/subscription";
 import { Settings } from "lucide-react";
 import React from "react";
+import OpenAiInp from "@/components/OpenAiInput";
 
 const SettingsPage = async () => {
   const isPremium = await checkSubscription();
@@ -22,6 +23,7 @@ const SettingsPage = async () => {
             ? "You are currently a premium member"
             : "You are currently on a free plan"}
         </div>
+        <OpenAiInp />
         <SubscriptionButton isPremium={isPremium} />
       </div>
     </div>

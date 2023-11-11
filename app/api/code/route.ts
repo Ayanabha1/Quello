@@ -4,11 +4,9 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 
-const config = new Configuration({
+let config = new Configuration({
   apiKey: process.env.OPEN_AI_SECRET_KEY,
 });
-
-const openai = new OpenAIApi(config);
 const instruction: ChatCompletionRequestMessage = {
   role: "system",
   content:
@@ -19,8 +17,20 @@ export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { messages } = body;
+    const { messages, clientApiKey } = body;
     const isPremium = await checkSubscription();
+
+    if (!clientApiKey) {
+      return new NextResponse("Please configure OpenAI Api Key", {
+        status: 401,
+      });
+    }
+
+    config = new Configuration({
+      apiKey: clientApiKey,
+    });
+    const openai = new OpenAIApi(config);
+
     if (!userId) {
       return new NextResponse("Unauthorized access", { status: 401 });
     }
@@ -44,6 +54,8 @@ export async function POST(req: Request) {
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {
     console.log("[CODE GENERATION ERROR]", error);
-    return new NextResponse("Internal error", { status: 500 });
+    return new NextResponse("[OPENAI ERROR] please check your OPENAI Api Key", {
+      status: 500,
+    });
   }
 }

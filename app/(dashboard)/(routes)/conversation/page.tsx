@@ -20,6 +20,8 @@ import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
 import { usePremiumModal } from "@/hooks/usePremiumModal";
 import toast from "react-hot-toast";
+import { useOpenAIKeyModal } from "@/hooks/useOpenAIKeyModal";
+import { isOpenAiKeyPresent } from "@/lib/openAiKey";
 
 const ConversationPage = () => {
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -34,11 +36,18 @@ const ConversationPage = () => {
 
   const router = useRouter();
   const premiumModal = usePremiumModal();
+  const openAIApIKeyModal = useOpenAIKeyModal();
 
   const submitFunc = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
+    if (process.env.NODE_ENV === "development" && !isOpenAiKeyPresent()) {
+      openAIApIKeyModal.onOpen();
+      setIsLoading(false);
+      return;
+    }
 
     try {
+      const apiKey = localStorage.getItem("OPENAI_API_KEY");
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
         content: values.prompt,
@@ -46,7 +55,8 @@ const ConversationPage = () => {
       const newMessages = [...messages, userMessage];
 
       const res = await axios.post("/api/conversation", {
-        messages: newMessages,
+        messages: [userMessage],
+        clientApiKey: apiKey,
       });
       console.log(res);
       setMessages((current) => [...current, userMessage, res.data]);

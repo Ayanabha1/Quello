@@ -4,11 +4,12 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/components/ModalProvider";
 import ToasterProvider from "@/components/ToasterProvider";
+import ApiKeyModalProvider from "@/components/ApiKeyModalProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Genius: The Most Advanced AI Platform",
+  title: "Quello: The Most Advanced AI Platform",
   description: "The Most Advanced AI Platform",
 };
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <ApiKeyModalProvider />
           <ModalProvider />
           <ToasterProvider />
           {children}

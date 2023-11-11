@@ -28,8 +28,10 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { usePremiumModal } from "@/hooks/usePremiumModal";
 import toast from "react-hot-toast";
+import { useOpenAIKeyModal } from "@/hooks/useOpenAIKeyModal";
+import { isOpenAiKeyPresent } from "@/lib/openAiKey";
 
-const ConversationPage = () => {
+const ImageGeneration = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,15 +42,25 @@ const ConversationPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
   const premiumModal = usePremiumModal();
+  const openAIApIKeyModal = useOpenAIKeyModal();
 
   const router = useRouter();
   const submitFunc = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
+    if (!isOpenAiKeyPresent()) {
+      openAIApIKeyModal.onOpen();
+      setIsLoading(false);
+      return;
+    }
 
     try {
+      const apiKey = localStorage.getItem("OPENAI_API_KEY");
       setImages([]);
       console.log(values);
-      const res = await axios.post("/api/image", values);
+      const res = await axios.post("/api/image", {
+        ...values,
+        clientApiKey: apiKey,
+      });
       const urls = res.data.map((image: { url: string }) => image.url);
       setImages(urls);
     } catch (error: any) {
@@ -198,4 +210,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default ImageGeneration;
