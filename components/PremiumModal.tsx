@@ -79,27 +79,33 @@ const PremiumModal = () => {
     <Dialog open={premiumModal.isOpen} onOpenChange={premiumModal.onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
-            <div className="flex items-center gap-x-2 font-bold py-1">
-              Become a premium member
-              <Badge className="uppercase text-sm py-1" variant="premium">
-                Premium
-              </Badge>
+          <DialogTitle className="flex justify-center items-center flex-col gap-y-2">
+            <div className="flex  items-center gap-x-2 font-bold py-1">
+              <p>
+                Become a{" "}
+                <Badge className="uppercase text-sm py-1" variant="premium">
+                  Premium
+                </Badge>{" "}
+                member
+              </p>
             </div>
+            <span className="text-sm text-muted-foreground">
+              Unlimited AI generations at just ₹20/mo
+            </span>
           </DialogTitle>
-          <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
+          <DialogDescription className="text-center pt-2 space-y-4 text-zinc-900 font-medium">
             {tools.map((tool) => (
               <Card
                 key={tool.label}
-                className="p-4  border-b-black/5 flex items-center justify-between cursor-pointer"
+                className="p-2  border-b-black/5 flex items-center justify-between cursor-pointer"
               >
                 <div className="flex items-center gap-x-4">
                   <div className={cn("p-2 w-fit rounded-md", tool.bgcolor)}>
-                    <tool.icon className={cn("w-8 h-8", tool.color)} />
+                    <tool.icon className={cn("w-6 h-6", tool.color)} />
                   </div>
-                  <div className="font-semibold">{tool.label}</div>
+                  <div className="font-semibold text-sm">{tool.label}</div>
                 </div>
-                <Check />
+                <Check className="w-5 h-5" />
               </Card>
             ))}
           </DialogDescription>

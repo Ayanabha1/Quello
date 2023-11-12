@@ -5,6 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Gradients = () => {
   return (
@@ -19,11 +20,12 @@ const LandingHero = () => {
   const styleObj = {
     background: "url(/background.png)",
   };
+  const router = useRouter();
 
   return (
     <main
       style={styleObj}
-      className="relative h-full w-full flex overflow-hidden"
+      className="relative h-[100vh] w-full flex overflow-hidden"
     >
       <Gradients />
       <div className="w-full flex flex-col items-center pt-28 z-[20]">
@@ -31,11 +33,11 @@ const LandingHero = () => {
           variant="white"
           className="h-fit w-fit p-2 px-5 text-sm z-[5] shadow-lg"
         >
-          Powered by ChatGPT
+          Powered by OpenAI
         </Badge>
 
         <div className="mt-10 space-y-5">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-bold">
+          <h1 className="text-4xl sm:text-5xl text-center md:text-6xl lg:text-7xl text-bold">
             The Best AI Tool For
           </h1>
           <p className="pb-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
@@ -58,7 +60,11 @@ const LandingHero = () => {
         </div>
 
         <div className="flex flex-col space-y-3 items-center">
-          <Button className="rounded-3xl text-md" variant="premium">
+          <Button
+            className="rounded-3xl text-md"
+            variant="premium"
+            onClick={() => router.push("/dashboard")}
+          >
             Get Started For Free
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
@@ -67,13 +73,13 @@ const LandingHero = () => {
           </span>
         </div>
 
-        <div className="max-w-5xl w-[80%] h-[60vh] sm:w-[80%] sm:h-[80vh]  rounded-xl bg-black/5 border border-black/8 mb-5 mt-10 p-2 sm:p-5 shadow-2xl overflow-hidden  ">
-          <div className="relative w-full h-full">
+        <div className="w-fit h-fit rounded-xl bg-black/5 border border-black/8 mb-5 mt-10 p-2 sm:p-5 shadow-2xl overflow-hidden">
+          <div className="relative aspect-video min-w-[300px] w-[75vw]">
             <Image
               fill
               alt="website image"
               src="/quello.png"
-              className="rounded-lg"
+              className="rounded-lg w-0"
             />
           </div>
         </div>

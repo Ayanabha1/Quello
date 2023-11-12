@@ -9,7 +9,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const isPremium = await checkSubscription();
   return (
     <div className="h-full relative">
-      <div className="hidden h-full md:flex md:flex-col md:w-72 md:fixed z-[80] bg-gray-900">
+      <div className="hidden h-full md:flex md:flex-col md:w-72 md:fixed z-[8] bg-gray-900">
         <Sidebar apiUsedCount={apiUsedCount} isPremium={isPremium} />
       </div>
 
