@@ -77,6 +77,8 @@ const ImageGeneration = () => {
 
   return (
     <div>
+      <title>Image Generation</title>
+
       <Heading
         title="Image Genearation"
         description="Generate images using descriptive text"

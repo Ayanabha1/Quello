@@ -57,6 +57,8 @@ const ConversationPage = () => {
 
   return (
     <div>
+      <title>Video Generation</title>
+
       <Heading
         title="Video Generation"
         description="Turn your imagination into video"

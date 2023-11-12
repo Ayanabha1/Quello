@@ -74,6 +74,8 @@ const ConversationPage = () => {
 
   return (
     <div>
+      <title>Conversation</title>
+
       <Heading
         title="Conversation"
         description="The most advanced conversation model"

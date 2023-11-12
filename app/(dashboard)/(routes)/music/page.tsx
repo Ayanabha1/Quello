@@ -57,6 +57,8 @@ const ConversationPage = () => {
 
   return (
     <div>
+      <title>Music Generation</title>
+
       <Heading
         title="Music Generation"
         description="Turn your imagination into music"

@@ -23,10 +23,7 @@ const LandingHero = () => {
   const router = useRouter();
 
   return (
-    <main
-      style={styleObj}
-      className="relative h-[100vh] w-full flex overflow-hidden"
-    >
+    <main style={styleObj} className="relative  w-full flex overflow-hidden">
       <Gradients />
       <div className="w-full flex flex-col items-center pt-28 z-[20]">
         <Badge
@@ -73,13 +70,13 @@ const LandingHero = () => {
           </span>
         </div>
 
-        <div className="w-fit h-fit rounded-xl bg-black/5 border border-black/8 mb-5 mt-10 p-2 sm:p-5 shadow-2xl overflow-hidden">
-          <div className="relative aspect-video min-w-[300px] w-[75vw]">
+        <div className="w-fit rounded-xl bg-black/5 border border-black/8 mb-5 mt-10 p-2 sm:p-5 shadow-2xl overflow-hidden">
+          <div className="relative aspect-video min-w-[300px] w-[75vw] h-[75vh]">
             <Image
               fill
               alt="website image"
               src="/quello.png"
-              className="rounded-lg w-0"
+              className="rounded-lg"
             />
           </div>
         </div>

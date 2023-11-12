@@ -72,6 +72,7 @@ const ConversationPage = () => {
 
   return (
     <div>
+      <title>Code Generation</title>
       <Heading
         title="Code Generation"
         description="Generate codes using descriptive text"

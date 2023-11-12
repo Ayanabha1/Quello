@@ -5,6 +5,10 @@ import { Settings } from "lucide-react";
 import React from "react";
 import OpenAiInp from "@/components/OpenAiInput";
 
+export const metadata = {
+  title: "Settings",
+};
+
 const SettingsPage = async () => {
   const isPremium = await checkSubscription();
 
