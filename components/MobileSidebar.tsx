@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./Sidebar";
+import { useSheet } from "@/hooks/useSheet";
 
 interface MobileSidebarPropsInterface {
   apiUsedCount: number;
@@ -32,7 +33,7 @@ const MobileSidebar = ({
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-full">
+      <SheetContent side="left" className="p-0 w-full text-white">
         <Sidebar apiUsedCount={apiUsedCount} isPremium={isPremium} />
       </SheetContent>
     </Sheet>
