@@ -40,7 +40,7 @@ const ConversationPage = () => {
 
   const submitFunc = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    if (process.env.NODE_ENV === "development" && !isOpenAiKeyPresent()) {
+    if (!isOpenAiKeyPresent()) {
       openAIApIKeyModal.onOpen();
       setIsLoading(false);
       return;
