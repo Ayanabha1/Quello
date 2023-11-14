@@ -41,7 +41,7 @@ export async function GET() {
           price_data: {
             currency: "INR",
             product_data: {
-              name: "Genius Premium",
+              name: "Quello Premium",
               description: "Unlimited Ai Generations",
             },
             unit_amount: 2000,
