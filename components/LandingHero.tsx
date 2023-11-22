@@ -71,12 +71,12 @@ const LandingHero = () => {
         </div>
 
         <div className="w-fit rounded-xl bg-black/5 border border-black/8 mb-5 mt-10 p-2 sm:p-5 shadow-2xl overflow-hidden">
-          <div className="relative aspect-video min-w-[300px] w-[75vw] h-[75vh]">
+          <div className="relative min-w-[300px] max-w-[85vw] w-[75vw] min-h-[30vh] aspect-video">
             <Image
               fill
               alt="website image"
               src="/quello.png"
-              className="rounded-lg"
+              className="rounded-lg aspect-video"
             />
           </div>
         </div>

@@ -14,7 +14,7 @@ const LandingNavbar = () => {
         <h1 className="text-xl sm:text-3xl mt-2">Quello</h1>
       </div>
       <span
-        className="text-sm sm:text-md font-normal cursor-pointer mt-2"
+        className="text-lg sm:text-xl font-normal cursor-pointer mt-2"
         onClick={() => router.push("/dashboard")}
       >
         Dashboard
